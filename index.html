@@ -1,45 +1,115 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-    canvas {
-        border: 1px solid #d3d3d3;
-        background-color: #f1f1f1;
-    }
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+#Home {background-color: rgb(31, 54, 71);}
+#Info {background-color: green;}
+#Donations {background-color: orange;}
+.merry-christmas {
+    font-family: Brush Script MT;
+    font-size: 100px;
+    text-align: center;
+}
+
+.information {
+    font-family: Brush Script MT;
+    font-size:20px;
+}
+
+#you {
+    color:rgb(255, 0, 0);
+}
+
+a:link {
+    color:red;
+    font-family: Garamond;
+}
+
+.list {
+    color:white;
+}
 </style>
-
+</head>
 <body>
-    <script>
-        function startGame() {
-            myGameArea.start();
-        }
 
-        var myGameArea = {
-            canvas: document.createElement("canvas"),
-            start: function () {
-                this.canvas.width = 480;
-                this.canvas.height = 270;
-                this.context = this.canvas.getContext("2d");
-                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-            }
-        }
-        var myGamePiece;
+<button class="tablink" onclick="openPage('Home', this, 'rgb(31, 54, 71)')">Home</button>
+<button class="tablink" onclick="openPage('Info', this, 'green')" id="defaultOpen">Info</button>
+<button class="tablink" onclick="openPage('Donations', this, 'orange')">Charity Events</button>
 
-        function startGame() {
-            myGameArea.start();
-            myGamePiece = new component(30, 30, "red", 10, 120);
-        }
+<div id="Home" class="tabcontent">
+  <h1 class="merry-christmas">MERRY CHRISTMAS</h1>
+</div>
 
-        function component(width, height, color, x, y) {
-            this.width = width;
-            this.height = height;
-            this.x = x;
-            this.y = y;
-            ctx = myGameArea.context;
-            ctx.fillStyle = color;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-        }
-    </script>
-    <p>hello, world! update pls</p>
+<div id="Info" class="tabcontent">
+  <p class="information">Christmas is the holiday where we celebrate the birth of Jesus Christ. He was born on the year 4 BC, although not everybody agrees on the exact date. Some people say December 25th, while others say Januarty 6th.</p>
+</div>
+
+<div id="Donations" class="tabcontent">
+ <p class="information">Here are some Christmas charity events that <b id="you">you</b> can donate to. Help people who can't usually get presents get them!</p>
+ <div class="list">
+     <ul>
+     <li><a href="https://www.toysfortots.org/">Toys for Tots</a></li>
+     <li><a href="https://www.samaritanspurse.org/what-we-do/operation-christmas-child/">Operation Christmas Child</a></li>
+     <li><a href="https://wish.org/believe">Make-A-Wish Foundation</a></li>
+     <li><a href="https://www.prisonfellowship.org/about/angel-tree/#">Prison Fellowship Angel Tree</a></li>
+     <li><a href="https://www.salvationarmyusa.org/usn/walmart-angel-tree/">Salvation Army Angel Tree</a></li>
+     <li><a href="https://www.operationhelpahero.org/operation-christmas-spirit.html">Operation Christmas Spirit</a></li>
+    </ul>
+ </div>
+</div>
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
 </body>
-
-</html>
+</html> 
